@@ -1,16 +1,18 @@
+const Company = require('../models/Company')
 const CompaniesController = {}
 
-CompaniesController.index = (req, res) => {
-    res.json({
+CompaniesController.index = async (req, res) => {
+    let companies = await Company.findAll()
+
+    return res.json({
         'error': false,
         'message': 'OK',
-        'data': [
-            {
-                "id": 1,
-                "name": "UE SAN IGNACIO"
-            }
-        ]
+        'data': companies
     })
+}
+
+CompaniesController.add = async(req, res) => {
+    
 }
 
 

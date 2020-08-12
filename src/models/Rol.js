@@ -17,7 +17,13 @@ Rol.init({
     },
     description: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "The field description cannot be empty"
+            }
+        },
+
         // allowNull defaults to true
     },
     created_at: {
@@ -27,22 +33,25 @@ Rol.init({
         type: DataTypes.DATE
     },
     company_id: {
-        type: DataTypes.UUID
+        type: DataTypes.UUID,
+        allowNull: false,
     },
     id: {
         type: DataTypes.UUID,
-        primaryKey: true
+        primaryKey: true,
+        defaultValue: Sequelize.UUIDV1
     }
 }, {
     // Other model options go here
     sequelize, // We need to pass the connection instance
     modelName: 'Rol', // We need to choose the model name,
     tableName: 'base_rol',
-    timestamps: false
+    createdAt: 'created_at',
+    updatedAt: 'modified_at'
 });
 
-Rol.belongsTo(Company,{
-  foreignKey: 'company_id'
+Rol.belongsTo(Company, {
+    foreignKey: 'company_id'
 })
 
 module.exports = Rol
