@@ -29,7 +29,7 @@ Rol.init({
     created_at: {
         type: DataTypes.DATE
     },
-    modified_at: {
+    updated_at: {
         type: DataTypes.DATE
     },
     company_id: {
@@ -44,10 +44,13 @@ Rol.init({
 }, {
     // Other model options go here
     sequelize, // We need to pass the connection instance
+    timestamps: true,
+    paranoid: true,
     modelName: 'Rol', // We need to choose the model name,
-    tableName: 'base_rol',
+    tableName: 'roles',
     createdAt: 'created_at',
-    updatedAt: 'modified_at'
+    updatedAt: 'updated_at',
+    deletedAt: 'deleted_at'
 });
 
 Rol.belongsTo(Company, {
