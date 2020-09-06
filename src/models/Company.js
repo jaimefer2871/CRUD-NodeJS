@@ -5,6 +5,11 @@ class Company extends Model { }
 
 Company.init({
     // Model attributes are defined here
+    id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: Sequelize.UUIDV1
+    },
     name: {
         type: DataTypes.STRING,
         allowNull: false
@@ -23,27 +28,7 @@ Company.init({
         type: DataTypes.STRING,
         // allowNull defaults to true
     },
-    path_logo: {
-        type: DataTypes.STRING,
-        // allowNull defaults to true
-    },
-    street: {
-        type: DataTypes.STRING,
-        // allowNull defaults to true
-    },
-    urbanization: {
-        type: DataTypes.STRING,
-        // allowNull defaults to true
-    },
-    avenue: {
-        type: DataTypes.STRING,
-        // allowNull defaults to true
-    },
-    building: {
-        type: DataTypes.STRING,
-        // allowNull defaults to true
-    },
-    mobile: {
+    address: {
         type: DataTypes.STRING,
         // allowNull defaults to true
     },
@@ -55,38 +40,25 @@ Company.init({
         type: DataTypes.STRING,
         // allowNull defaults to true
     },
-    email_alternative: {
-        type: DataTypes.STRING,
-        // allowNull defaults to true
-    },
-    facebook: {
-        type: DataTypes.STRING,
-        // allowNull defaults to true
-    },
-    instagram: {
-        type: DataTypes.STRING,
-        // allowNull defaults to true
-    },
-    twitter: {
-        type: DataTypes.STRING,
-        // allowNull defaults to true
-    },
     created_at: {
         type: DataTypes.DATE
     },
-    modified_at: {
+    updated_at: {
         type: DataTypes.DATE
     },
-    id: {
-        type: DataTypes.UUID,
-        primaryKey: true
-    }
+    deleted_at: {
+        type: DataTypes.DATE
+    },
 }, {
     // Other model options go here
     sequelize, // We need to pass the connection instance
     modelName: 'Company', // We need to choose the model name,
-    tableName: 'base_company',
-    timestamps: false
+    tableName: 'companies',
+    timestamps: true,
+    paranoid: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+    deletedAt: 'deleted_at'
 });
 
 module.exports = Company

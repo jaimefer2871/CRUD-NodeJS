@@ -12,9 +12,7 @@ app.use(express.json())
 app.use(express.urlencoded({
     extended: true
 }))
-
 app.use(require('./routes/index'));
-
 app.use(express.static('public'))
 
 app.listen(process.env.APP_PORT, () => {
