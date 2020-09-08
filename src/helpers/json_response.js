@@ -22,6 +22,14 @@ const JsonResponse = (res, data) => {
             msj = 'Resource Not Found!!'
             errorStatus = true
             break;
+        case 401:
+            msj = 'Access denied. No token provided'
+            errorStatus = true
+            break;
+        case 400:
+            msj = 'Invalid Token.'
+            errorStatus = true
+            break;
         default:
             msj = 'OK'
             break;
